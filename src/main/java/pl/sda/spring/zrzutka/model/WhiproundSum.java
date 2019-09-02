@@ -1,6 +1,7 @@
 package pl.sda.spring.zrzutka.model;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 public class WhiproundSum {
@@ -19,9 +20,11 @@ public class WhiproundSum {
 
     public BigDecimal getPercentage(){
         if (sum.compareTo(BigDecimal.ZERO)> 0){
-            return sum.divide(whipround.getGoal()).multiply(BigDecimal.valueOf(100));
+            //return sum.divide(whipround.getGoal()).multiply(BigDecimal.valueOf(100));
+            return sum.divide(whipround.getGoal(), 2,  RoundingMode.HALF_UP).multiply(BigDecimal.valueOf(100));
         }
         return BigDecimal.ZERO;
+
     }
 
 
